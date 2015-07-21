@@ -1,0 +1,23 @@
+{
+  "_id": "_design/99b4b7a6da548de4d1a3ea759f5216bda9d9f532",
+  "_rev": "2-f8f6f27e67a6f4110c11a97b48dd9879",
+  "language": "query",
+  "views": {
+    "content_type": {
+      "map": {
+        "fields": {
+          "content_type": "asc"
+        }
+      },
+      "reduce": "_count",
+      "options": {
+        "def": {
+          "fields": [
+            "content_type"
+          ]
+        },
+        "w": 2
+      }
+    }
+  }
+}

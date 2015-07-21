@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IBM Travel</title>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="./css/prism.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-wrapper">
+            <img src="./images/example_loading.gif">
+            <p>loading</p>
+        </div>
+    </div>
+
+    <div class="container story">
+        <div id="story-container">
+            <div id="story-bg" class="active"></div>
+            <div id="story" class="active">
+                <div class="icons"></div>
+                <div class="animated-circle"></div>
+                <div class="steps">
+                    <div class="content one">
+                        <p>When people travel, they are often thrust into an environment of foreign currencies and unfamiliar banking services. Managing finances under these conditions is difficult at best.</p>
+                    </div>
+                    <div class="content two">
+                        <p>By publishing internal APIs to external partners – like travel services – banks can extend banking services to customers who abroad.</p>
+                    </div>
+                    <!--<div class="content three">-->
+                        <!--<h3>MQLight INTEGRATION</h3>-->
+                        <!--<p></p>-->
+                    <!--</div>-->
+                    <!--<div class="content four">-->
+                        <!--<h3>DATABASE INTEGRATION</h3>-->
+                        <!--<p>Edit the loadDestinations function within app.js to include the Cloudant connecting code.</p>-->
+                        <!--<h6>Code Sample</h6>-->
+<!--<pre>-->
+<!--<code class="language-javascript">-->
+<!--cloudant.init = function(callback) {-->
+    <!--setCloudantURL();-->
+    <!--nanodb = require('nano')(CLOUDANT_URL);-->
+    <!--nanodb.db.create('countries', function() {-->
+        <!--tweets = nanodb.use('countries');-->
+    <!--});-->
+    <!--callback();-->
+<!--};</code></pre>-->
+                    <!--</div>-->
+                    <div class="content three">
+                        <!--<h3>DATABASE INTEGRATION</h3>-->
+                        <p>Begin by clicking on Select Destination to see a list of destinations being pulled in from our Cloudant database.</p>
+                    </div>
+                    <div class="content four">
+                        <!--<h3>DATABASE INTEGRATION</h3>-->
+                        <p>Click "Book Flight"</p>
+                    </div>
+                    <div class="controls">
+                        <a href="#">NEXT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="diagram">
+        <h4>INTERACTION
+            BETWEEN
+            COMPONENTS</h4>
+        <div class="diagram"><img src="./images/diagram.jpg"></div>
+    </div>
+
+    <!-- Reloads the page button -->
+    <div class="fork-git-wrapper fade">
+        <div class="fork-git">Fork me on Github</div>
+    </div>
+
+    <div class="banner"></div>
+
+    <!-- Container -->
+    <div class="container main">
+        <main role="main">
+            <header>
+                <div class="navbar-brand"></div>
+            </header>
+            <div class="content-page">
+                <div id="book-flight">
+                    <h3 class="subheader">Book Your Flight</h3>
+                    <article class="itinerary">
+                        <div class="from">
+                            <h3>NYC, New York</h3>
+                        </div>
+                        <div class="to">
+                            <div class="arrows to-arrow"></div>
+                            <select id="to" class="form-control">
+                                <option value="" disabled selected>Select Destination</option>
+                                <option>London, United Kingdom</option>
+                                <option>Tokyo, Japan</option>
+                                <option>Paris, France</option>
+                            </select>
+                        </div>
+                        <div class="depart">
+                            <input type="text" id="datepicker-depart" placeholder="">
+                        </div>
+                        <div class="arrive">
+                            <input type="text" id="datepicker-arrive" placeholder="">
+                        </div>
+                        <button type="button" class="btn btn-primary book-it">Book Flight</button>
+                    </article>
+                </div>
+                <div id="confirmation-flight" class="hidden">
+                    <h3 class="subheader"><img src="./images/check.svg"> Payment Confirmed</h3>
+                    <article class="confirmation">
+                        <div class="outbound">
+                            <h3>OUTBOUND</h3>
+                            <div class="outbound-header">JFK<img src="./images/plane_up.svg"><span class="dest-abbr">LHR</span></div>
+                            <div class="left">
+                                <p class="depart-date"><strong>June 6 10:00 AM</strong></p>
+                                <p>7h 8m</p>
+                                <p>Arrive XX:XX PM</p>
+                            </div>
+                            <div  class="right">
+                                <p><strong>Flight 800</strong></p>
+                                <p>Economy Plus</p>
+                            </div>
+
+                        </div>
+                        <div class="inbound">
+                            <h3>INBOUND</h3>
+                            <div class="outbound-header"><span class="dest-abbr">LHR</span><img class="inbound-image" src="./images/plane_down.svg">JFK</div>
+                            <div class="left">
+                                <p class="return-date"><strong>June 14 10:00 AM</strong></p>
+                                <p>7h 8m</p>
+                                <p>Arrive XX:XX PM</p>
+                            </div>
+                            <div  class="right">
+                                <p><strong>Flight 800</strong></p>
+                                <p>Economy Plus</p>
+                            </div>
+                        </div>
+
+                    </article>
+                    <div class="notification">
+                        <div class="left"><img src="./images/bank_logo_w.svg"></div>
+                        <p><strong>Congratulations</strong> you're trip has been synched to your bank account. Visit your banking app for trip-related services.</p>
+                    </div>
+                    <article class="summary">
+                        <h3>Summary of Charges</h3>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>Airline Ticket cost</td>
+                                <td>$365 per ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Airline Taxes & Fees</td>
+                                <td>$615 per ticket</td>
+                            </tr>
+                            <tr>
+                                <td>Airline Ticket Trip Protection</td>
+                                <td>
+                                    Declined
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Number of Tickets</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Airline Ticket Delivery</td>
+                                <td>$0.00 (Electronic Ticket)</td>
+                            </tr>
+                            <tr>
+                                <td>Airfare subtotal</td>
+                                <td>$980</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <hr>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3 class="blue-bold">Total Trip Cost (All prices US dollars)</h3>
+                                    </td>
+                                    <td>
+                                        <h3 class="blue-bold">$980.00</h3>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <button type="button" class="btn btn-primary book-another">Book Another Trip</button>
+
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal in the center of screen after clicking "Book it" -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body bank-modal">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="left">
+                                <img src="./images/tripsync.svg">
+                            </div>
+                            <div class="right">
+                                <img src="./images/bank_logo_b.svg">
+                                <p>Do you want to forward your travel info to us at BANK. We’ll log your dates to ensure no disruption to banking services. And we’ll assist you with budgeting, so you can get the most out of your trip!</p>
+
+                                <form class="form-inline" id="bank">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="checkbox" name="check"  type="checkbox" value="yes" checked>
+                                            "Yes, I would like to sync my trip with BANK."
+                                        </label>
+                                    </div>
+                                    <button type="submit" id="submit" class="btn btn-default modal-submit">OK</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Debugger console on the right side of the screen.  Reveals when clicked. -->
+    <div class="iframe-container hidden">
+        <a href="javascript:void(0);" class="open-iframe">
+            <span>CLICK HERE TO VISUALIZE DATA</span>
+        </a>
+        <iframe class="iframe-local hidden" width="1000" height="1000" src="http://localhost:9180/index.html"></iframe>
+    </div>
+
+    <script src="./js/vendor/jquery/jquery.js"></script>
+    <script src="./js/vendor/bootstrap/modal.js"></script>
+    <script src="./js/vendor/prism.js"></script>
+    <script src="./js/ibm.js"></script>
+
+</body>
+</html>

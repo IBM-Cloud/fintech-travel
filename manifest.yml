@@ -1,0 +1,21 @@
+---
+applications:
+- name:  process-bank-notification-backend
+  disk: 1024M
+  command: node app.js
+  path: backend
+  memory: 1GB
+  instances: 1
+  no-route: true
+  services:
+  - MQLight-sampleservice
+  - Cloudant-NoSQL-sampleservice
+- name:  process-bank-notification-frontend
+  disk: 1024M
+  command: node app.js
+  path: frontend
+  memory: 1GB
+  host: my-fintech-travel-demo
+  services:
+  - MQLight-sampleservice
+  - Cloudant-NoSQL-sampleservice

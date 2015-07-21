@@ -1,0 +1,10 @@
+{
+  "_id": "_design/_imfdata_keycounttyped",
+  "_rev": "1-9d8b59b8455eb5997d7955b79caf394e",
+  "views": {
+    "keyCountTyped": {
+      "map": "function(doc) {\n    if (!doc.hasOwnProperty(\"@datatype\")) {\n        return;\n    }\n    var keys = Object.keys(doc);\n    for (var k in keys) {\n        key = keys[k];\n        if ([\"_id\", \"_rev\", \"@datatype\"].indexOf(key) == -1) {\n            emit([doc[\"@datatype\"], key], 1);\n        }\n    }\n}",
+      "reduce": "_count"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ibm-sigdemo-travel",
+  "version": "1.0.0",
+  "description": "IBM Signature Demo - Travel / Financial Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thebarbariangroup/ibm-sigdemo-travel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebarbariangroup/ibm-sigdemo-travel/issues"
+  },
+  "homepage": "https://github.com/thebarbariangroup/ibm-sigdemo-travel",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-connect": "^2.2.0",
+    "gulp-less": "^3.0.3",
+    "gulp-plumber": "^1.0.0",
+    "gulp-express": "^0.3.5"
+  },
+  "dependencies": {
+    "cloudant": "^1.0.0"
+  }
+}

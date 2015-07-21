@@ -1,0 +1,10 @@
+{
+  "_id": "_design/_imfdata_listdatatypes",
+  "_rev": "1-bba69ceea185bc9b27406b9d3322721f",
+  "views": {
+    "listdatatypes": {
+      "map": "function(doc) {\n    if (doc[\"@datatype\"]) {\n        emit(doc[\"@datatype\"], 1);\n    }\n}",
+      "reduce": "_count"
+    }
+  }
+}

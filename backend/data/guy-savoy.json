@@ -1,0 +1,13 @@
+{
+  "content_type": "com.majestykapps.notification",
+  "rewardData": [
+    {
+      "objectId": "Guy Savoy",
+      "sortKey": "000-006",
+      "name": "Guy Savoy",
+      "detail": "The  Brasserie Lipp  is a legendary address. Since its creation in 1880, the brewery has a strong literary and political reputation. Recovery in 2002 by Bertrand Restoration.",
+      "rating": "$$",
+      "localImageName": "NotificationsTemp6"
+    }
+  ]
+}

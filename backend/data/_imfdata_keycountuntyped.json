@@ -1,0 +1,10 @@
+{
+  "_id": "_design/_imfdata_keycountuntyped",
+  "_rev": "1-b1f32c7394b26d1a5dcafe851f4152d6",
+  "views": {
+    "keyCountUntyped": {
+      "map": "function(doc) {\n    var keys = Object.keys(doc);\n    for (var k in keys) {\n        key = keys[k];\n        if ([\"_id\", \"_rev\", \"@datatype\"].indexOf(key) == -1) {\n            emit(key, 1);\n        }\n    }\n}",
+      "reduce": "_count"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_type": "com.majestykapps.notification",
+  "rewardData": [
+    {
+      "objectId": "Restaurant Le Meurice",
+      "sortKey": "000-001",
+      "name": "Restaurant Le Meurice",
+      "detail": "A pure cuisine which turns simple into good. Real taste is returned to its truth, without any superfluous ingredient. Preparations are purified to leave room to the strength of taste.",
+      "rating": "$$$",
+      "localImageName": "NotificationsTemp1"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "content_type": "com.majestykapps.notification",
+  "rewardData": [
+    {
+      "objectId": "Restaurant BON",
+      "sortKey": "000-005",
+      "name": "Restaurant BON",
+      "detail": "This chic Asian restaurant in the 16th, a \"fresh\", \"refined\" interior with space where \"you can breathe and hear yourself speak\"; the chef \"delights you\" with \"innovative\" Asian flavors \"with a new French twist\".",
+      "rating": "$$",
+      "localImageName": "NotificationsTemp5"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "language": "query",
+  "views": {
+    "2ef554c58cab1697217d92134d513b713996b289": {
+      "map": {
+        "fields": {
+          "@datatype": "asc"
+        }
+      },
+      "reduce": "_count",
+      "options": {
+        "def": {
+          "fields": [
+            "@datatype"
+          ]
+        },
+        "w": 2
+      }
+    }
+  }
+}

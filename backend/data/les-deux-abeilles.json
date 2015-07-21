@@ -1,0 +1,13 @@
+{
+  "content_type": "com.majestykapps.notification",
+  "rewardData": [
+    {
+      "objectId": "Les Deux Abeilles",
+      "sortKey": "000-003",
+      "name": "Les Deux Abeilles",
+      "detail": "There is no lovelier sanctuary from the Eiffel Tower crowds than this old-fashioned tea room, the elegant love child of a mother-and-daughter team who greet regulars with a bisou (kiss).",
+      "rating": "$$$",
+      "localImageName": "NotificationsTemp3"
+    }
+  ]
+}

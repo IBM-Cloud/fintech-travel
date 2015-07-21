@@ -1,0 +1,14 @@
+{
+    "discover":true,
+    "type":"concept",
+    "compute":[
+        "CloudFoundry"
+    ],
+    "runtimes":[
+        "Node"
+    ],
+    "services":[
+        "MQLight",
+        "Cloudant"
+    ]
+}

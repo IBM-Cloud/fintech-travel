@@ -1,0 +1,33 @@
+{
+  "weekBudgetList": [
+    {
+      "objectId": "001",
+      "type": "1",
+      "title": "TRAVEL - PARIS, SEPTMBER 20-26 2016",
+      "notes": "We’ve automatically created a budget for your upcoming trip to Paris based on your finances and spending habits. But feel free to adjust the numbers to your needs",
+      "totalBudget": "3500.00",
+      "totalSpend": "1287.42"
+    },
+    {
+      "objectId": "002",
+      "type": "2",
+      "title": "TRANSPORTATION",
+      "totalBudget": "500.00",
+      "totalSpend": "121.16"
+    },
+    {
+      "objectId": "003",
+      "type": "3",
+      "title": "FOOD",
+      "totalBudget": "1000.00",
+      "totalSpend": "973.88"
+    },
+    {
+      "objectId": "004",
+      "type": "4",
+      "title": "ENTERTAINMENT",
+      "totalBudget": "500.00",
+      "totalSpend": "511.73"
+    }
+  ]
+}

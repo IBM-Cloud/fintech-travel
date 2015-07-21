@@ -1,0 +1,13 @@
+{
+  "content_type": "com.majestykapps.notification",
+  "rewardData": [
+    {
+      "objectId": "Chez Pau",
+      "sortKey": "000-004",
+      "name": "Chez Pau",
+      "detail": "This is what we found at 13 Rue de Charonne early 1900. The notes of the accordion accompanied the counter touring after that of coal. Hospitality and warmth, friends and customers were emptying a glass",
+      "rating": "$$$",
+      "localImageName": "NotificationsTemp4"
+    }
+  ]
+}
