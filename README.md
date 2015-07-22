@@ -1,5 +1,6 @@
 #MQLight/Cloudant Minimum Viable Service Tutorial
 
+<<<<<<< HEAD
 ## Overview
 
 ####What is a “Minimum Viable Service”?
@@ -16,6 +17,20 @@ Let’s go.
 
 
 ### Requirements:
+=======
+###Navigation:
+1. [Getting Started](#getting-started)
+2. [Setup Local MQLight Server](#setup-local-mqlight-server)
+3. [Create MQLight Helper Node Module](#create-mqlight-helper-node-module)
+4. [Create Cloudant Helper Node Module](#create-cloudant-helper-node-module)
+5. [Create Backend Node Javascript](#create-backend-node-javascript)
+6. [Create Frontend Node Javascript](#create-frontend-node-javascript)
+7. [How to insert data and images into Cloudant database](#how-to-insert-data-and-images-into-cloudant-database)
+8. [Running the App Locally](#running-the-app-locally)
+9. [Appendix](#appendix)
+
+###Requirements:
+>>>>>>> e060650e3d1cd3daf4d34e62d0abfddb85470088
 1. [Node](http://nodejs.org)
 2. [NPM](https://npmjs.com)
 
@@ -37,9 +52,20 @@ Let’s go.
 7. You can login to your Cloudant launcher and view the data stored in the database.
 8. Click 'Book Another Trip' to start over.
 
+<<<<<<< HEAD
 ### Architecture Diagram
 
 ![Architecture Diagram](https://github.com/IBM-Bluemix/fintech-travel/raw/master/IBM_demo_app_architecture_v1-01.jpg)
+=======
+```$ git clone git@github.com:IBM-Bluemix/fintech-travel.git```
+
+###Create a Bluemix account.
+1. Go to: [Bluemix](https://bluemix.net/)
+2. Click "sign up" at the top right
+3. Fill out form and submit.  Wait a few minutes for the confirmation email.
+4. Receive email and validate email address
+5. Login to Bluemix at the link above
+>>>>>>> e060650e3d1cd3daf4d34e62d0abfddb85470088
 
 ## Running the app on Bluemix
 
