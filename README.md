@@ -71,7 +71,7 @@ Let’s go.
     services:
     - MQLight-sampleservice
     - Cloudant-NoSQL-sampleservice
-  - name:  fintect-travel-frontend
+  - name:  fintech-travel-frontend
     disk: 1024M
     command: node app.js
     path: frontend
