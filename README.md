@@ -52,10 +52,10 @@ Let’s go.
 3. Clone the app to your local environment from your terminal using the following command
 
   ```
-  git clone https://github.com/IBM-Bluemix/fintech-travel.git
+  $ git clone https://github.com/IBM-Bluemix/fintech-travel.git
   ```
 
-4. ```cd``` into this newly created directory
+4. ```$ cd``` into this newly created directory
 
 5. Edit the `manifest.yml` file and change the `<application-name>` and `<application-host>` to something unique.
 
