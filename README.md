@@ -127,7 +127,7 @@ Let’s go.
 
 3. Once MQLight has started, a browser window will open to http://localhost:9180.  MQLight process will run in the background.
 
-4. ```cd``` into the project directory
+4. ```$ cd``` into the project directory
 
 5. Install node Modules
   ```
