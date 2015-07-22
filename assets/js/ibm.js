@@ -1,6 +1,17 @@
 /**
-* @fileOverview Barbarian Group - IBM 2015 TravelDemo
-* @version 1.0
+* Copyright 2015 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the “License”);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an “AS IS” BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
 */
 
 // declare IBM in case it has not been declared yet
@@ -47,10 +58,11 @@ IBM.TravelDemo = (function(IBM, window){
 		request.onreadystatechange = function(e) {
 			if (request.readyState == 4) {
 				console.log ( 'request.readyState' , request.readyState, "request.status: " , request.status , "request.responseText ", request.responseText);
-				cb( request.responseText );
+				if ( cb ) cb( request.responseText );
 			}
 		};
 	},
+
 	checkmqlightCB = function( response ) {
 		console.log("Mqlight response: ", response);
 		IBM.DemoTutorial.mqLightSuccess(response);
@@ -69,10 +81,10 @@ IBM.TravelDemo = (function(IBM, window){
 	bind = function(){
 
 		// initialize MQlight service
-		checkProgress( "/rest/checkmqlight" );
+		checkProgress( "/api/checkmqlight" );
 
 		// initialize Cloudant service
-		checkProgress( "/rest/checkcloudant" );
+		checkProgress( "/api/checkcloudant");
 
 		$('form').submit(function(e){
 			e.preventDefault();
@@ -176,7 +188,7 @@ IBM.TravelDemo = (function(IBM, window){
 
 	submitRequest = function() {
 		console.log ( "submitRequest" );
-		var url = "rest/bank_notification";
+		var url = "api/bank_notification";
 
 		var destination = document.getElementById("to").value,
 			departDate = document.getElementById("datepicker-depart").value,
@@ -212,7 +224,7 @@ IBM.TravelDemo = (function(IBM, window){
 			}, 10000);
 		}
 		catch (err) {
-			console.log("REST/HTTP POST of words failed: " + err.message);
+			console.log("api/HTTP POST of words failed: " + err.message);
 		}
 	},
 

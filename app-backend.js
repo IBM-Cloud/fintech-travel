@@ -1,52 +1,41 @@
-/*******************************************************************************
-//
-// Program name: app.js
-//
-// Description:
-//
-// A Node.js app that demonstrates use of the IBM Bluemix MQ Light Service.
-//
-// <copyright
-// notice="lm-source-program"
-// pids=""
-// years="2014, 2015"
-// crc="659007836" >
-// Licensed Materials - Property of IBM
-//
-// (C) Copyright IBM Corp. 2014, 2015 All Rights Reserved.
-//
-// US Government Users Restricted Rights - Use, duplication or
-// disclosure restricted by GSA ADP Schedule Contract with
-// IBM Corp.
-// </copyright>
-//
-// Contributors:
-// IBM - Initial Contribution
- *******************************************************************************/
+/**
+* Copyright 2015 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the “License”);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an “AS IS” BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
+require("cf-deployment-tracker-client").track();
 
-var SUBSCRIBE_TOPIC = "mqlight/sample/bank_notification",
-	fs = require('fs'),
-	path = require('path'),
+var SUBSCRIBE_TOPIC = "mqlight/sample/bank_notification";
+var fs = require('fs');
+var path = require('path');
 
 // MQLIGHT setup
-	mqlight = require('mqlight'),
-	mqlightSetup = require('./mqlight-setup')(mqlight, processMessage, SUBSCRIBE_TOPIC ),
-	mqlightClient = mqlightSetup.init(),
+var mqlightSetup = require('./setup-mqlight')( processMessage, SUBSCRIBE_TOPIC );
+var mqlightClient = mqlightSetup.init();
 
 // CLOUDANT credentials
 	// since this is the backend app, Cloudant is necessary
-	cloudantHost = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com",
-	cloudantUser = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix",
-	cloudantPassword = "1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f",
-	cloudantUrl = "https://7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix:1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f@7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com",
-	cloudantDbName = "fintech-travel",
+	// TODO input your Cloudant credentials below
+var cloudantHost = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com";
+var cloudantUser = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix";
+var cloudantPassword = "1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f";
+var cloudantDbName = "fintech-travel";
+var cloudantUrl = "https://" + cloudantUser + ":" + cloudantPassword + "@" + cloudantHost;
 
 // CLOUDANT setup
-	cloudant = require('cloudant'),
-	cloudantSetup = require('./cloudant-setup')(cloudant, cloudantHost, cloudantUser, cloudantPassword, cloudantUrl, cloudantDbName),
-	database = cloudantSetup.init();
-
+var cloudantSetup = require('./setup-cloudant')(cloudantHost, cloudantUser, cloudantPassword, cloudantUrl, cloudantDbName);
+var database = cloudantSetup.init();
 
 /*
  * processMessage

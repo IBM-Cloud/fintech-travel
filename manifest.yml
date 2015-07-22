@@ -1,4 +1,12 @@
 ---
+declared-services:
+  MQLight-sampleservice:
+    label: mqlight
+    plan: standard
+  Cloudant-NoSQL-sampleservice:
+    label: cloudantNoSQLDB
+    plan: Shared
+---
 applications:
 - name:  process-bank-notification-backend
   disk: 1024M

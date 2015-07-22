@@ -1,3 +1,19 @@
+/**
+* Copyright 2015 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the “License”);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an “AS IS” BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 /*
  * CloudantSetup
  * @param {Object} cloudant: node module that is installed via typing "$ npm install cloudant --save-dev" into the terminal
@@ -7,7 +23,10 @@
  * @param {String} url: url that the cloudant database lives on
  * @param {String} dbname: name of the database to use
  */
-module.exports = function( cloudant, host, user, pass, url, dbname ){
+
+var cloudant = require('cloudant');
+
+module.exports = function( host, user, pass, url, dbname ){
 	"use strict";
 
 	// variable used by the below functions
@@ -19,7 +38,6 @@ module.exports = function( cloudant, host, user, pass, url, dbname ){
 	 * Initialize Cloudant service either on Bluemix or locally
 	 */
 	cloudantInstance.init = function() {
-
 		if (process.env.VCAP_SERVICES) {
 			var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
 			if (vcapServices.cloudantNoSQLDB) {
@@ -52,7 +70,6 @@ module.exports = function( cloudant, host, user, pass, url, dbname ){
 	 * Create Cloudant client and return it
 	 */
 	cloudantInstance.create = function() {
-
 		// instantiate the Cloudant node module and check if it fails
 		var cloudantModule = cloudant(cloudantCredentials, function(er, cloudant, reply) {
 			if (er) {
@@ -82,7 +99,6 @@ module.exports = function( cloudant, host, user, pass, url, dbname ){
 
 		// if the database doesn't exist, create it
 		if ( !db ){
-			console.log( 'cloudantCredentials.dbName:', cloudantCredentials.dbName);
 			//check if DB exists if not create
 			cloudantModule.db.create(cloudantCredentials.dbName, function(err, res) {
 				if (err) {

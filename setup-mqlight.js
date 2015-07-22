@@ -1,10 +1,29 @@
+/**
+* Copyright 2015 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the “License”);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an “AS IS” BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 /*
  * MQLightSetup
  * @param {Object} mqlight: node module that is installed via typing "$ npm install mqlight --save-dev" into the terminal
  * @param {Function} callback: callback that mqlight client returns to based on if it receives an event with the topic as its name
  * @param {String} topic: event name that mqlight client listens to
  */
-module.exports = function( mqlight, callback, topic ){
+
+var mqlight = require( 'mqlight' );
+
+module.exports = function( callback, topic ){
 	"use strict";
 
 	var mqlightClient, // mqlight client itself
@@ -17,7 +36,6 @@ module.exports = function( mqlight, callback, topic ){
 	 * Initialize MQLight service either on Bluemix or locally
 	 */
 	mqlightInstance.init = function() {
-
 		/*
 		 * Create our MQ Light client
 		 * If we are not running in Bluemix, then default to a local MQ Light connection
@@ -46,7 +64,6 @@ module.exports = function( mqlight, callback, topic ){
 	 * Create MQ Light client and return it
 	 */
 	mqlightInstance.create = function() {
-
 		var returnString = "Error: MQLight Client not created";
 		mqlightSubInitialised = false;
 		mqlightClient = mqlight.createClient(mqlightCredentials, function(err) {
@@ -59,7 +76,6 @@ module.exports = function( mqlight, callback, topic ){
 				returnString = 'Connected to ' + mqlightCredentials.service + ' using client-id ' + mqlightClient.id;
 				console.log(returnString);
 			}
-
 			// listens to when a message is received to process and invokes the callback function
 			mqlightClient.on('message', callback);
 
@@ -84,6 +100,7 @@ module.exports = function( mqlight, callback, topic ){
 			);
 		});
 
+		// return the client if it exists
 		if ( mqlightClient ) {
 			return mqlightClient;
 		} else {

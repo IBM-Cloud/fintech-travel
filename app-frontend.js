@@ -1,54 +1,45 @@
-/*******************************************************************************
-//
-// Program name: app.js
-//
-// Description:
-//
-// A Node.js app that demonstrates use of the IBM Bluemix MQ Light Service.
-//
-// <copyright
-// notice="lm-source-program"
-// pids=""
-// years="2014, 2015"
-// crc="659007836" >
-// Licensed Materials - Property of IBM
-//
-// (C) Copyright IBM Corp. 2014, 2015 All Rights Reserved.
-//
-// US Government Users Restricted Rights - Use, duplication or
-// disclosure restricted by GSA ADP Schedule Contract with
-// IBM Corp.
-// </copyright>
-//
-// Contributors:
-// IBM - Initial Contribution
- *******************************************************************************/
+/**
+* Copyright 2015 IBM Corp. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the “License”);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an “AS IS” BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+require("cf-deployment-tracker-client").track();
 
 // node module
-var http = require('http'),
-	express = require('express'),
-	fs = require('fs'),
-	bodyParser = require('body-parser'),
+var http = require('http');
+var express = require('express');
+var fs = require('fs');
+var bodyParser = require('body-parser');
 
 // TOPIC for mqlight
-	PUBLISH_TOPIC = "mqlight/sample/bank_notification",
+var PUBLISH_TOPIC = "mqlight/sample/bank_notification";
 
 // MQLIGHT setup
-	mqlight = require('mqlight'),
-	mqlightSetup = require('./mqlight-setup')(mqlight, processMessage, PUBLISH_TOPIC),
-	mqlightSubInitialised = false,
+var mqlightSetup = require('./setup-mqlight')(processMessage, PUBLISH_TOPIC);
+var mqlightSubInitialised = false;
 
 // CLOUDANT credentials
 	// since this is the frontend portion of the app, Cloudant is only used to check if it is working correctly, otherwise all references of Cloudant can be deleted along with their functions.
-	cloudantHost = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com",
-	cloudantUser = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix",
-	cloudantPassword = "1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f",
-	cloudantUrl = "https://7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix:1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f@7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com",
-	cloudantDbName = "fintech-travel",
+	// TODO input your Cloudant credentials below
+var cloudantHost = "";
+var cloudantUser = "";
+var cloudantPassword = "";
+var cloudantDbName = "";
+var cloudantUrl = "https://" + cloudantUser + ":" + cloudantPassword + "@" + cloudantHost;
 
 // CLOUDANT setup
-	cloudant = require('cloudant'),
- 	cloudantSetup = require('./cloudant-setup')(cloudant, cloudantHost, cloudantUser, cloudantPassword, cloudantUrl, cloudantDbName);
+var cloudantSetup = require('./setup-cloudant')(cloudantHost, cloudantUser, cloudantPassword, cloudantUrl, cloudantDbName);
 
 
 /*
@@ -111,11 +102,8 @@ var app = express();
 
 // Setup the static file handlers
 app.all('/', staticContentHandler);
-app.all('/fonts/*', staticContentHandler);
+app.all('/assets/**/*', staticContentHandler);
 app.all('/*.html', staticContentHandler);
-app.all('/css/*.css', staticContentHandler);
-app.all('/images/*', staticContentHandler);
-app.all('/js/*', staticContentHandler);
 // Use JSON for our REST payloads
 app.use(bodyParser.json());
 
@@ -125,7 +113,7 @@ app.use(bodyParser.json());
  * @param {Object} res :
  * GET handler to check if MQLight is working.  This is an optional function and is only for learning purposes.  Can be removed from production development.  *BUT* if it is removed, then you must initiate the MQlight (lines 128 and 129) somewhere else in this module.
  */
-app.get('/rest/checkmqlight', function(req,res) {
+app.get('/api/checkmqlight', function(req,res) {
 	mqlightClient = mqlightSetup.init();
 	mqlightSubInitialised = true;
 	if ( typeof mqlightClient != 'object' ) {
@@ -143,7 +131,7 @@ app.get('/rest/checkmqlight', function(req,res) {
  * @param {Object} res :
  * GET handler to check if Cloudant is working.  This is an optional function and is only for learning purposes.  Can be removed from production development
  */
-app.get('/rest/checkcloudant', function(req,res) {
+app.get('/api/checkcloudant', function(req,res) {
 	var database = cloudantSetup.init();
 	if ( typeof database != 'object' ) {
 		console.error( database );
@@ -160,7 +148,7 @@ app.get('/rest/checkcloudant', function(req,res) {
  * @param {Object} res :
  * GET handler that checks if the message was sent through the MQLight service
  */
-app.get('/rest/checkmqlightmessage', function(req,res) {
+app.get('/api/checkmqlightmessage', function(req,res) {
 	if ( processedMessage == "Error" ) {
 		console.error( processedMessage );
 		res.status( 400 ).send( processedMessage );
@@ -176,7 +164,7 @@ app.get('/rest/checkmqlightmessage', function(req,res) {
  * @param {Object} res : Response is used for confirmation of success
  * Prepares the departDate, returnDate, and destination data to be sent to the backend
  */
-app.post('/rest/bank_notification', function(req,res) {
+app.post('/api/bank_notification', function(req,res) {
 	// Check we've initialised our subscription
 	if (!mqlightSubInitialised) {
 		res.writeHead(500);
