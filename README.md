@@ -123,7 +123,7 @@ Let’s go.
     ```
     MQLight should now start.
 
-    Note: *If you have multiple installations you may receive an AMQ6109 error, which we fixed by instead running ```sudo ./mqlight-start``` on your original MQLight installation.*
+    Note: *If you have multiple installations you may receive an AMQ6109 error, which we fixed by instead running ```$ sudo ./mqlight-start``` on your original MQLight installation.*
 
 3. Once MQLight has started, a browser window will open to http://localhost:9180.  MQLight process will run in the background.
 
