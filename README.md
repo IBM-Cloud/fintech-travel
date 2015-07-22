@@ -33,10 +33,10 @@
 
 ###Clone this repo
 
-```$ git clone git@github.com:thebarbariangroup/ibm-sigdemo-travel.git```
+```$ git clone git@github.com:IBM-Bluemix/fintech-travel.git```
 
 ###Create a Bluemix account.
-1. Go to: [Bluemix](https://console.ng.bluemix.net/)
+1. Go to: [Bluemix](https://bluemix.net/)
 2. Click "sign up" at the top right
 3. Fill out form and submit.  Wait a few minutes for the confirmation email.
 4. Receive email and validate email address
