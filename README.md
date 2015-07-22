@@ -31,10 +31,10 @@ Let’s go.
 1. Navigate to the app home page.
 2. Walk through the modal windows.
 3. Select a destination in the dropdown menu.
-4. Click 'Book Flight'
-5. In the modal window, click 'Ok'
+4. Click 'Book Flight'.
+5. In the modal window, click 'Ok'.  This will trigger the MQLight messages and insertions into the Cloudant DB.
 6. If you are building the app locally, you can open the panel on the right side of the screen to view the MQLight messages being sent.
-7. You can login to your Cloudant launcher and view the data stored in the da
+7. You can login to your Cloudant launcher and view the data stored in the database via the Bluemix Dashboard.
 8. Click 'Book Another Trip' to start over.
 
 ### Architecture Diagram
