@@ -1,5 +1,3 @@
-#MQLight/Cloudant Minimum Viable Service Tutorial
-
 ## Overview
 
 ####What is a “Minimum Viable Service”?
