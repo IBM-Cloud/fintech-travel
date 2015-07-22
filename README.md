@@ -131,7 +131,7 @@ Let’s go.
 
 5. Install node Modules
   ```
-  npm install
+  $ npm install
   ```
 
 6. start backend app
