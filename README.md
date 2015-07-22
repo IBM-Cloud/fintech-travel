@@ -1,7 +1,5 @@
 #MQLight/Cloudant Minimum Viable Service Tutorial
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/fintech-travel.git)
-
 ###Navigation:
 1. [Getting Started](#getting-started)
 2. [Setup Local MQLight Server](#setup-local-mqlight-server)
