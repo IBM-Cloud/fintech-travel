@@ -58,11 +58,18 @@ Let’s go.
 5. Edit the `manifest.yml` file and change the `<application-name>` and `<application-host>` to something unique.
 
   ```
+  ---
+  declared-services:
+    MQLight-sampleservice:
+      label: mqlight
+      plan: standard
+    Cloudant-NoSQL-sampleservice:
+      label: cloudantNoSQLDB
+      plan: Shared
   applications:
   - name:  fintech-travel-backend
     disk: 1024M
-    command: node app.js
-    path: backend
+    command: node app-backend.js
     memory: 1GB
     instances: 1
     no-route: true
@@ -71,8 +78,7 @@ Let’s go.
     - Cloudant-NoSQL-sampleservice
   - name:  fintech-travel-frontend
     disk: 1024M
-    command: node app.js
-    path: frontend
+    command: node app-frontend.js
     memory: 1GB
     host: my-fintech-travel-demo
     services:
