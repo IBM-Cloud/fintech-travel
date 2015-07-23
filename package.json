@@ -24,6 +24,6 @@
     "node": "~0.10.x"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app-backend.js && node app-frontend.js"
   }
 }
