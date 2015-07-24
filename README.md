@@ -10,6 +10,8 @@ Your mission here is to make an open API available to partners to create somethi
 
 Let’s go.
 
+If you click the "Deploy to Bluemix" button, only 1 app will load.  Since this tutorial requires 2 apps, you will need to follow the [Running the app on Bluemix](#running-the-app-bluemix) to push the 2nd backend app into your Bluemix account via the ```cf push``` command.
+
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/fintech-travel.git)
 
 
@@ -19,7 +21,7 @@ Let’s go.
 
 ### Navigation:
 1. [How it Works](#how-it-works)
-2. [Running the app on Bluemix](#running-the-app-locally)
+2. [Running the app on Bluemix](#running-the-app-bluemix)
 3. [Running the app locally](#running-the-app-locally)
 4. [Privacy Notice](#privacy-notice)
 5. [Disabling Deployment Tracking](#disabling-deployment-tracking)
