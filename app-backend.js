@@ -27,10 +27,10 @@ var mqlightClient = mqlightSetup.init();
 // CLOUDANT credentials
 	// since this is the backend app, Cloudant is necessary
 	// TODO input your Cloudant credentials below
-var cloudantHost = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix.cloudant.com";
-var cloudantUser = "7885c1de-e04e-4a53-a8b7-f8d5c67f1b17-bluemix";
-var cloudantPassword = "1a779f3d72807b60da279c24e9326d041154fff3fa472425fddae1392f6d7d3f";
-var cloudantDbName = "fintech-travel";
+var cloudantHost = "";
+var cloudantUser = "";
+var cloudantPassword = "";
+var cloudantDbName = "";
 var cloudantUrl = "https://" + cloudantUser + ":" + cloudantPassword + "@" + cloudantHost;
 
 // CLOUDANT setup
@@ -76,6 +76,19 @@ function processMessage(data, delivery) {
 				return console.log('Insert error:', err.reason);
 			console.log( "success:", body);
 		});
+
+		// loading external data into the database
+		insertJSONData( 'brasserie-lipp.json', 'note: Brasserie Lipp', 'NotificationsTemp2.png');
+		insertJSONData( 'chez-pau.json', 'note: Chez Pau', 'NotificationsTemp4.png' );
+		insertJSONData( 'guy-savoy.json', 'note: Guy Savoy', 'NotificationsTemp6.png' );
+		insertJSONData( 'les-deux-abeilles.json', 'note: Les Deux Abeilles', 'NotificationsTemp3.png' );
+		insertJSONData( 'restaurant-bon.json', 'note: Restaurant BON', 'NotificationsTemp5.png' );
+		insertJSONData( 'restaurant-le-meurice.json', 'note: Restaurant Le Meurice', 'NotificationsTemp1.png' );
+		insertJSONData( 'reward-status.json', 'rewardstatus' );
+		insertJSONData( 'transaction-days.json', 'transaction-days' );
+		insertJSONData( 'week-budget-detail.json', 'weekbudgetdetail' );
+		insertJSONData( 'week-budget.json', 'weekbudget' );
+
 	}
 }
 
@@ -119,15 +132,3 @@ function insertJSONData( jsonFileName, id, imageName ) {
 		});
 	});
 }
-
-// loading external data into the database
-insertJSONData( 'brasserie-lipp.json', 'note: Brasserie Lipp', 'NotificationsTemp2.png');
-insertJSONData( 'chez-pau.json', 'note: Chez Pau', 'NotificationsTemp4.png' );
-insertJSONData( 'guy-savoy.json', 'note: Guy Savoy', 'NotificationsTemp6.png' );
-insertJSONData( 'les-deux-abeilles.json', 'note: Les Deux Abeilles', 'NotificationsTemp3.png' );
-insertJSONData( 'restaurant-bon.json', 'note: Restaurant BON', 'NotificationsTemp5.png' );
-insertJSONData( 'restaurant-le-meurice.json', 'note: Restaurant Le Meurice', 'NotificationsTemp1.png' );
-insertJSONData( 'reward-status.json', 'rewardstatus' );
-insertJSONData( 'transaction-days.json', 'transaction-days' );
-insertJSONData( 'week-budget-detail.json', 'weekbudgetdetail' );
-insertJSONData( 'week-budget.json', 'weekbudget' );
