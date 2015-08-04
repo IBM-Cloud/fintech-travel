@@ -61,7 +61,7 @@ Let’s go.
   applications:
   - name:  fintech-travel-backend
     disk: 1024M
-    command: node app.js
+    command: node app-backend.js
     path: backend
     memory: 1GB
     instances: 1
@@ -71,7 +71,7 @@ Let’s go.
     - Cloudant-NoSQL-sampleservice
   - name:  fintech-travel-frontend
     disk: 1024M
-    command: node app.js
+    command: node app-frontend.js
     path: frontend
     memory: 1GB
     host: my-fintech-travel-demo
