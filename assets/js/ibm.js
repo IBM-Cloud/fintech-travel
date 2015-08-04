@@ -49,7 +49,7 @@ IBM.TravelDemo = (function(IBM, window){
 		}
 	},
 
-	checkProgress = function ( path, cb ) {
+	checkAPI = function ( path, cb ) {
 		console.log ( "Check Progress", path, cb );
 		var request = new XMLHttpRequest();
 		request.open("GET", path, true);
@@ -81,10 +81,10 @@ IBM.TravelDemo = (function(IBM, window){
 	bind = function(){
 
 		// initialize MQlight service
-		checkProgress( "/api/checkmqlight" );
+		checkAPI( "/api/checkmqlight" );
 
 		// initialize Cloudant service
-		checkProgress( "/api/checkcloudant");
+		checkAPI( "/api/checkcloudant");
 
 		$('form').submit(function(e){
 			e.preventDefault();
@@ -119,7 +119,7 @@ IBM.TravelDemo = (function(IBM, window){
 		$('.book-another').on('click', loadPageBookFlight );
 
 		$('body').on('click', '.close', function(){
-		   $('.notification').hide();
+			 $('.notification').hide();
 		});
 
 		$('.fork-git').on('click', function(){
@@ -145,7 +145,6 @@ IBM.TravelDemo = (function(IBM, window){
 		$bookFlight.removeClass("hidden");
 		$confirmationFlight.addClass("hidden");
 		$('body, .banner').removeClass('confirmation');
-		$('.to-arrow').hide();
 	},
 
 	loadPageConfirmation = function() {
@@ -174,7 +173,7 @@ IBM.TravelDemo = (function(IBM, window){
 			case "Tokyo, Japan":
 				$dest.text("NRT");
 				break;
-			case  "Paris, France":
+			case	"Paris, France":
 				$dest.text("CDG");
 				break;
 			default :
@@ -213,7 +212,7 @@ IBM.TravelDemo = (function(IBM, window){
 			console.log ( "request", destination, departDate, returnDate );
 			request.onreadystatechange=function() {
 				if (request.readyState==4 && request.status==200) {
-				  $('.notification-success').show();
+					$('.notification-success').show();
 				}
 			};
 			if (infoTimeout === null) infoTimeout = setTimeout(function(){
@@ -322,7 +321,7 @@ IBM.TravelDemo = (function(IBM, window){
 	// public methods or variables
 	return {
 		init: init,
-		checkProgress: checkProgress,
+		gress: checkAPI,
 		checkmqlightCB: checkmqlightCB,
 		checkcloudantCB: checkcloudantCB,
 		checkmqlightmessageCB: checkmqlightmessageCB
@@ -333,11 +332,12 @@ IBM.TravelDemo = (function(IBM, window){
 
 IBM.DemoTutorial = (function(IBM){
 
-	var $content = $('.content'),
+	var $steps = $('.step'),
 		currentIndex = 0,
-		length = $content.length,
+		length = $steps.length,
 		iframeContainer = $('.iframe-container'),
 		init = function(){
+			console.log("demo init");
 			//get the locally stored step and update currentIndex
 			getstate();
 			//bind events to dom objects
@@ -382,12 +382,7 @@ IBM.DemoTutorial = (function(IBM){
 			}
 
 			if(currentIndex == 1){
-				$('.to-arrow').show();
-				$("#story-bg").removeClass( "active" );
-			}
-
-			if(currentIndex == 2){
-				$('.to-arrow').hide();
+				// $("#story-bg").removeClass( "active" );
 			}
 
 			showNextStep();
@@ -395,21 +390,20 @@ IBM.DemoTutorial = (function(IBM){
 		},
 		showNextStep = function(){
 			//hide current step
-			$content.eq(currentIndex).hide();
+			$steps.eq(currentIndex).addClass('hidden');
 			//increment the index
 			currentIndex++;
 			//save the next step to localstorage
 			saveState(currentIndex);
 			//show the next step
-			$content.eq(currentIndex).show();
+			$steps.eq(currentIndex).removeClass('hidden');
 		},
 		cloudantSuccess = function(response){
 			//if cloudant does not return an error show the next step
 			if(response === "cloudant success"){
-				$('.to-arrow').show();
 				$("#story-bg").removeClass( "active" );
 				$('.icons').parent().removeClass('error');
-				$content.eq(currentIndex).find('p').removeClass('error');
+				$steps.eq(currentIndex).find('p').removeClass('error');
 				showNextStep();
 			}else{
 				//show error if cloudant returns an error
@@ -423,7 +417,7 @@ IBM.DemoTutorial = (function(IBM){
 			if(response === "mqlight success"){
 				//iframeContainer.removeClass('hidden');
 				$('.icons').parent().removeClass('error');
-				$content.eq(currentIndex).find('p').removeClass('error');
+				$steps.eq(currentIndex).find('p').removeClass('error');
 				showNextStep();
 			}else{
 				//show errror if mqLight returns an error
@@ -463,20 +457,23 @@ IBM.DemoTutorial = (function(IBM){
 			//save the current step to a key named step
 			localStorage.setItem("step" , step);
 
+			console.log( 'savestate', localStorage.getItem("step") );
 		},
 		//get the tutorial state saved in localStorage and present the view based on the current index
 		getstate = function(){
+			console.log( 'getstate', localStorage.getItem("step") );
+
 			//check if there is something stored first, if not then return
-			if(!localStorage.getItem("step")){
+			if(!localStorage.getItem("step") || localStorage.getItem("step") >= length-1){
 				currentIndex = 0;
 				return false;
 			}
 			//update current index to the stored step
 			currentIndex = localStorage.getItem("step");
 			//hide the steps that are not the current step
-			$content.not(':eq(currentIndex)').hide();
+			$steps.not(':eq(currentIndex)').addClass('hidden');
 			//show the step at the current index
-			$content.eq(currentIndex).show();
+			$steps.eq(currentIndex).removeClass('hidden');
 		};
 	// public methods or variables
 	return {
