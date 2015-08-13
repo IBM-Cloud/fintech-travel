@@ -47,7 +47,6 @@ module.exports = function( host, user, pass, url, dbname ){
 				cloudantCredentials.user = vcapServices.cloudantNoSQLDB[0].credentials.username;
 				cloudantCredentials.password = vcapServices.cloudantNoSQLDB[0].credentials.password;
 				cloudantCredentials.url = vcapServices.cloudantNoSQLDB[0].credentials.url;
-				cloudantCredentials.dbName = dbname;
 			} else {
 				// @TODO -FRONT END there is no bound cloudant service on bluemix
 			}
@@ -83,9 +82,8 @@ module.exports = function( host, user, pass, url, dbname ){
 			}
 		});
 
-		var db;
 		// list your databases to check if they already exist
-		cloudantModule.db.list(function(err, all_dbs) {
+		return cloudantModule.db.list(function(err, all_dbs) {
 			if (err) {
 				console.log("no databases");
 				throw new Error(err);
@@ -93,71 +91,75 @@ module.exports = function( host, user, pass, url, dbname ){
 			} else {
 				// print all the documents in our database
 				console.log('All my databases: %s', all_dbs.join(', '));
-				db = all_dbs[0];
+				cloudantCredentials.dbName = all_dbs[0];
 			}
-		});
 
-		// if the database doesn't exist, create it
-		if ( !db ){
-			//check if DB exists if not create
-			cloudantModule.db.create(cloudantCredentials.dbName, function(err, res) {
-				if (err) {
-					console.error('Cloudant ::', err.reason);
-					//@TODO -FRONT END The database name doesn't exist
+			console.log( "CloudantCredentials", cloudantCredentials );
+
+			// if the database doesn't exist, create it
+			if ( !cloudantCredentials.dbName ){
+				//check if DB exists if not create
+				cloudantModule.db.create(cloudantCredentials.dbName, function(err, res) {
+					if (err) {
+						console.error('Cloudant ::', err.reason);
+						//@TODO -FRONT END The database name doesn't exist
+					} else {
+						console.log("Cloudant :: " + cloudantCredentials.dbName + " Database created");
+					}
+				});
+			}
+
+			// use the database based on the name that was passed by argument into the module
+			var database = cloudantModule.use( cloudantCredentials.dbName );
+
+			// setup the indices of the database
+			var index_destination = {
+				name: 'destination',
+				type: 'json',
+				index: {
+					fields: ['destination']
+				}
+			},
+			index_departDate = {
+				name: 'departDate',
+				type: 'json',
+				index: {
+					fields: ['departDate']
+				}
+			},
+			index_returnDate = {
+				name: 'returnDate',
+				type: 'json',
+				index: {
+					fields: ['returnDate']
+				}
+			};
+			// store the indices into the database
+			database.index(index_destination, function(er, response) {
+				if (er) {
+					throw er;
 				} else {
-					console.log("Cloudant :: " + cloudantCredentials.dbName + " Database created");
+					console.log('Cloudant :: Destination index %s', response.result);
 				}
 			});
-		}
-		// use the database based on the name that was passed by argument into the module
-		var database = cloudantModule.use(cloudantCredentials.dbName);
+			database.index(index_departDate, function(er, response) {
+				if (er) {
+					throw er;
+				} else {
+					console.log('Cloudant :: Depart Date index %s', response.result);
+				}
+			});
+			database.index(index_returnDate, function(er, response) {
+				if (er) {
+					throw er;
+				} else {
+					console.log('Cloudant :: Return Date index %s', response.result);
+				}
+			});
 
-		// setup the indices of the database
-		var index_destination = {
-			name: 'destination',
-			type: 'json',
-			index: {
-				fields: ['destination']
-			}
-		},
-		index_departDate = {
-			name: 'departDate',
-			type: 'json',
-			index: {
-				fields: ['departDate']
-			}
-		},
-		index_returnDate = {
-			name: 'returnDate',
-			type: 'json',
-			index: {
-				fields: ['returnDate']
-			}
-		};
-		// store the indices into the database
-		database.index(index_destination, function(er, response) {
-			if (er) {
-				throw er;
-			} else {
-				console.log('Cloudant :: Destination index %s', response.result);
-			}
-		});
-		database.index(index_departDate, function(er, response) {
-			if (er) {
-				throw er;
-			} else {
-				console.log('Cloudant :: Depart Date index %s', response.result);
-			}
-		});
-		database.index(index_returnDate, function(er, response) {
-			if (er) {
-				throw er;
-			} else {
-				console.log('Cloudant :: Return Date index %s', response.result);
-			}
+			if ( database ) return database;
 		});
 
-		if ( database ) return database;
 	};
 
 	// return the cloudantInstance module
