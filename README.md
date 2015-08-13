@@ -12,7 +12,7 @@ Let’s go.
 
 If you click the "Deploy to Bluemix" button, only 1 app will load.  Since this tutorial requires 2 apps, you will need to follow the [Running the app on Bluemix](#running-the-app-bluemix) to push the 2nd backend app into your Bluemix account via the ```cf push``` command.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/fintech-travel.git)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
 
 ### Requirements:
