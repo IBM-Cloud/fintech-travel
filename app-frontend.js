@@ -200,7 +200,7 @@ app.post('/api/bank_notification', function(req,res) {
  * Establish HTTP credentials, then configure Express
  */
 var httpOpts = {};
-httpOpts.port = (process.env.VCAP_APP_PORT || 3001);
+httpOpts.port = (process.PORT || 3001);
 
 /*
  * Start our REST server
